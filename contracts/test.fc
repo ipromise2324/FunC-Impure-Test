@@ -21,7 +21,8 @@ int mul(int a, int b) impure inline {
     (int op, int query_id) = ctx::body~load_op_and_query_id();
 
     {-
-        When executing op::without_dump, the result returned by sum() is not used. Even though I marked sum() as impure, the contract still does not throw an error.
+        When executing op::without_dump, the result returned by sum() is not used. Even though I marked sum() as impure, 
+        the contract still does not throw an error.
         
         -> The impure functionality is not being triggered.
     -}
