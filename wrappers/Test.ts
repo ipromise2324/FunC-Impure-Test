@@ -22,7 +22,7 @@ export class Test implements Contract {
         return new Test(contractAddress(workchain, init), init);
     }
 
-    async sendWithoutDump(provider: ContractProvider, via: Sender, value: bigint, queryId: bigint = 1n) {
+    async sendWithoutDump(provider: ContractProvider, via: Sender, value: bigint, queryId: bigint = 0n) {
         await provider.internal(via, {
             value,
             sendMode: SendMode.PAY_GAS_SEPARATELY,
@@ -30,7 +30,7 @@ export class Test implements Contract {
         });
     }
 
-    async sendWithDump(provider: ContractProvider, via: Sender, value: bigint, queryId: bigint = 1n) {
+    async sendWithDump(provider: ContractProvider, via: Sender, value: bigint, queryId: bigint = 0n) {
         await provider.internal(via, {
             value,
             sendMode: SendMode.PAY_GAS_SEPARATELY,
@@ -38,7 +38,7 @@ export class Test implements Contract {
         });
     }
 
-    async sendSumDirectly(provider: ContractProvider, via: Sender, value: bigint, queryId: bigint = 1n) {
+    async sendSumDirectly(provider: ContractProvider, via: Sender, value: bigint, queryId: bigint = 0n) {
         await provider.internal(via, {
             value,
             sendMode: SendMode.PAY_GAS_SEPARATELY,

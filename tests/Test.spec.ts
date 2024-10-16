@@ -15,15 +15,17 @@ describe('Impure Test', () => {
     let deployer: SandboxContract<TreasuryContract>;
     let test: SandboxContract<Test>;
     describe('When executing op::without_dump, the result returned by sum() is not used. Even though I marked sum() as impure, the contract still does not throw an error.', () => {
-        it('contract did not throw error if code without ~dump()', async () => {
+        it('should throw an error even if the return value of sum() is not used, because of the impure specifier', async () => {
             blockchain = await Blockchain.create();
 
             test = blockchain.openContract(Test.createFromConfig({}, code));
+            const queryId = 0n;
 
             deployer = await blockchain.treasury('deployer');
-            const sumResult = await test.sendWithoutDump(deployer.getSender(), toNano('0.05'));
+            const sumResult = await test.sendWithoutDump(deployer.getSender(), toNano('0.05'), queryId);
             printTransactionFees(sumResult.transactions);
 
+            // Contract should throw but it did not
             expect(sumResult.transactions[1]).toHaveTransaction({
                 from: deployer.address,
                 to: test.address,
@@ -32,13 +34,14 @@ describe('Impure Test', () => {
         });
     });
     describe('When executing op::with_dump, the result returned by mul() is used -> Contract throws error', () => {
-        it('contract throw error if code use ~dump()', async () => {
+        it('should throw an error because the impure specifier is used and the return value of mul() is used', async () => {
             blockchain = await Blockchain.create();
 
             test = blockchain.openContract(Test.createFromConfig({}, code));
+            const queryId = 1n;
 
             deployer = await blockchain.treasury('deployer');
-            const mulResult = await test.sendWithDump(deployer.getSender(), toNano('0.05'));
+            const mulResult = await test.sendWithDump(deployer.getSender(), toNano('0.05'), queryId);
             printTransactionFees(mulResult.transactions);
 
             expect(mulResult.transactions[1]).toHaveTransaction({
@@ -51,13 +54,14 @@ describe('Impure Test', () => {
     });
 
     describe('Call sum() directly and it did throw error even contract did not use the return value', () => {
-        it('contract throw error when contract call sum() directly and did not ues the return value', async () => {
+        it('should throw an error even if the return value of sum() is not used, because of the impure specifier', async () => {
             blockchain = await Blockchain.create();
 
             test = blockchain.openContract(Test.createFromConfig({}, code));
+            const queryId = 0n;
 
             deployer = await blockchain.treasury('deployer');
-            const sumResult = await test.sendSumDirectly(deployer.getSender(), toNano('0.05'));
+            const sumResult = await test.sendSumDirectly(deployer.getSender(), toNano('0.05'), queryId);
             printTransactionFees(sumResult.transactions);
 
             expect(sumResult.transactions[1]).toHaveTransaction({
@@ -70,13 +74,14 @@ describe('Impure Test', () => {
     });
 
     describe('Call mul() directly and it did throw error when contract use the return value', () => {
-        it('contract throw error when contract call mul() directly and contract ues the return value', async () => {
+        it('should throw an error because the impure specifier is used and the return value of mul() is used', async () => {
             blockchain = await Blockchain.create();
 
             test = blockchain.openContract(Test.createFromConfig({}, code));
+            const queryId = 1n;
 
             deployer = await blockchain.treasury('deployer');
-            const mulResult = await test.sendMulDirectly(deployer.getSender(), toNano('0.05'));
+            const mulResult = await test.sendMulDirectly(deployer.getSender(), toNano('0.05'), queryId);
             printTransactionFees(mulResult.transactions);
 
             expect(mulResult.transactions[1]).toHaveTransaction({
