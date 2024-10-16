@@ -2,6 +2,8 @@
 
 [Alan](https://github.com/alan890104) and I recently experimented with implementing polymorphism in FunC, using a ternary operation to determine which function to execute. However, we encountered a peculiar issue: even though we marked both `sum()` and `mul()` as impure, if the return value of a function is not used, any errors inside the function fail to throw as expected.
 
+This doesn't make much sense because with the impure modifier, the function should throw an error even if its return value isn't used.
+
 Here’s the relevant code:
 
 <img src="https://github.com/user-attachments/assets/85115989-1281-492b-bf92-15064acec926" alt="description" width="500" />
