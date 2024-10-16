@@ -9,7 +9,7 @@ Here’s the relevant code:
 
 In the main program:
 
-![image](https://github.com/user-attachments/assets/6b07bce1-a11f-4ebc-8a10-134547ca8728)
+![image](https://github.com/user-attachments/assets/acd5033b-c281-4203-8a62-f20baa34940f)
 
 
 When the return value is used (as in the `op::with_dump` case), the error is thrown correctly. However, in the `op::without_dump` case, where the return value is not utilized, the error does not throw, even though the function is marked as impure.
