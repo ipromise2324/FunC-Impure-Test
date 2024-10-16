@@ -22,6 +22,7 @@ describe('Impure Test', () => {
 
             deployer = await blockchain.treasury('deployer');
             const sumResult = await test.sendWithoutDump(deployer.getSender(), toNano('0.05'));
+            printTransactionFees(sumResult.transactions);
 
             expect(sumResult.transactions[1]).toHaveTransaction({
                 from: deployer.address,
@@ -38,6 +39,7 @@ describe('Impure Test', () => {
 
             deployer = await blockchain.treasury('deployer');
             const mulResult = await test.sendWithDump(deployer.getSender(), toNano('0.05'));
+            printTransactionFees(mulResult.transactions);
 
             expect(mulResult.transactions[1]).toHaveTransaction({
                 from: deployer.address,
@@ -56,6 +58,7 @@ describe('Impure Test', () => {
 
             deployer = await blockchain.treasury('deployer');
             const sumResult = await test.sendSumDirectly(deployer.getSender(), toNano('0.05'));
+            printTransactionFees(sumResult.transactions);
 
             expect(sumResult.transactions[1]).toHaveTransaction({
                 from: deployer.address,
@@ -74,6 +77,7 @@ describe('Impure Test', () => {
 
             deployer = await blockchain.treasury('deployer');
             const mulResult = await test.sendMulDirectly(deployer.getSender(), toNano('0.05'));
+            printTransactionFees(mulResult.transactions);
 
             expect(mulResult.transactions[1]).toHaveTransaction({
                 from: deployer.address,

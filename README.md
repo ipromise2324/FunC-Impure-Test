@@ -16,9 +16,15 @@ When the return value is used (as in the `op::with_dump` case), the error is thr
 
 This behavior is puzzling because, theoretically, impure functions should trigger the error regardless of whether their return value is used. We conducted additional tests, such as directly calling the function without using the return value, and in those cases, the error was thrown successfully. (You can find more details in `test.fc`.)
 
-Based on these experiments, we believe this could be a bug in FunC. I’d love to hear your thoughts on this!
 
 --- 
+
+# Result
+
+
+<img width="1198" alt="image" src="https://github.com/user-attachments/assets/52e63d57-5691-4856-b346-26f6f1fd4d6c">
+
+---
 
 ## How to use
 
