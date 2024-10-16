@@ -27,7 +27,7 @@ int mul(int a, int b) impure inline {
         -> The impure functionality is not being triggered.
     -}
     if op == op::without_dump {
-        var func = TRUE ? sum : mul;
+        var func =  query_id % 2 == 0 ? sum : mul;
         int result = func(100, 200);
         ;; ~dump(result);
         return ();
@@ -37,7 +37,7 @@ int mul(int a, int b) impure inline {
         When executing op::with_dump, the result returned by mul() is used -> Contract throws error
     -}
     if op == op::with_dump {
-        var func = FALSE ? sum : mul;
+        var func = query_id % 2 == 0 ? sum : mul;
         int result = func(100, 200);
         ~dump(result);
         return ();
