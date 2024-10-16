@@ -19,7 +19,7 @@ describe('Impure Test', () => {
             blockchain = await Blockchain.create();
 
             test = blockchain.openContract(Test.createFromConfig({}, code));
-            const queryId = 0n;
+            const queryId = 0n; // 0n will use sum() function
 
             deployer = await blockchain.treasury('deployer');
             const sumResult = await test.sendWithoutDump(deployer.getSender(), toNano('0.05'), queryId);
@@ -38,7 +38,7 @@ describe('Impure Test', () => {
             blockchain = await Blockchain.create();
 
             test = blockchain.openContract(Test.createFromConfig({}, code));
-            const queryId = 1n;
+            const queryId = 1n; // 1n will use mul() function
 
             deployer = await blockchain.treasury('deployer');
             const mulResult = await test.sendWithDump(deployer.getSender(), toNano('0.05'), queryId);
@@ -58,7 +58,7 @@ describe('Impure Test', () => {
             blockchain = await Blockchain.create();
 
             test = blockchain.openContract(Test.createFromConfig({}, code));
-            const queryId = 0n;
+            const queryId = 0n; // 0n will use sum() function
 
             deployer = await blockchain.treasury('deployer');
             const sumResult = await test.sendSumDirectly(deployer.getSender(), toNano('0.05'), queryId);
@@ -78,7 +78,7 @@ describe('Impure Test', () => {
             blockchain = await Blockchain.create();
 
             test = blockchain.openContract(Test.createFromConfig({}, code));
-            const queryId = 1n;
+            const queryId = 1n; // 1n will use mul() function
 
             deployer = await blockchain.treasury('deployer');
             const mulResult = await test.sendMulDirectly(deployer.getSender(), toNano('0.05'), queryId);
