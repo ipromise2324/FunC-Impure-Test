@@ -14,7 +14,7 @@ In the main program:
 ![image](https://github.com/user-attachments/assets/552b869a-dbe1-4bcf-a616-3793b2ba1af5)
 
 
-When the return value is used (as in the `op::with_dump` case), the error is thrown correctly. However, in the `op::without_dump` case, where the return value is not utilized, the error does not throw, even though the function is marked as impure.
+When the return value is used (as in the `op::with_dump` case), the error is thrown correctly. However, in the `op::without_dump` case, since the return value is not utilized, the error does not throw, even though the function is marked as impure. You can refer to this [test case](https://github.com/ipromise2324/FunC-Impure-Test/blob/20810b2ffce045d5d8a107fc464db570041544c7/tests/Test.spec.ts#L18), where theoretically it should throw an error, but its status is success.
 
 This behavior is puzzling because, theoretically, impure functions should trigger the error regardless of whether their return value is used. We conducted additional tests, such as directly calling the function without using the return value, and in those cases, the error was thrown successfully. (You can find more details in `test.fc`.)
 
