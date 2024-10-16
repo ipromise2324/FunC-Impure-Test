@@ -1,4 +1,4 @@
-# Polymorphism Bug in FunC ?
+# 'impure' doesn't work in function assignment.
 
 [Alan](https://github.com/alan890104) and I recently experimented with implementing polymorphism in FunC, using a ternary operation to determine which function to execute. However, we encountered a peculiar issue: even though we marked both `sum()` and `mul()` as impure, if the return value of a function is not used, any errors inside the function fail to throw as expected.
 
