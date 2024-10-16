@@ -4,7 +4,7 @@ Alan and I recently experimented with implementing polymorphism in FunC, using a
 
 Here’s the relevant code:
 
-![image](https://github.com/user-attachments/assets/85115989-1281-492b-bf92-15064acec926)
+<img src="https://github.com/user-attachments/assets/85115989-1281-492b-bf92-15064acec926" alt="description" width="500" />
 
 
 In the main program:
